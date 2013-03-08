@@ -1,21 +1,21 @@
-# cheat_sheet.org
+# cheat_sheet.org.sh
 # (C) William Hackmore, 2010
 # The contents of this file are released under the GNU General Public License. Feel free to reuse the contents of this work, as long as the resultant works give proper attribution and are made publicly available under the GNU General Public License.
 # Last updated 8/14/2012
 # Best viewed in emacs org-mode.
 
-* Command Reference:
+* Reference:
 ** Basics:
 *** Getting help:
 
 # View the manual for target command
-man [command]
+man command
 
 # Get help with a target command (probably the same as above, but not always):
-[command] -h
+command -h
 
-# In case you forget the name of a command, print possible commands relating to [guess]:
-apropos [guess]
+# In case you forget the name of a command, print possible commands relating to guess:
+apropos guess
 
 # View index of help pages:
 info
@@ -35,21 +35,21 @@ ls -a
 ls -R
 
 # Move/rename a file or directory (be careful that you don't move the source over a destination with the same name):
-mv [source] [destination]
+mv source destination
 
 # Delete target forever (be very careful), use -r recursive flag for directories:
-rm [target]
+rm target
 
 # Copy file or directory:
-cp [source] [destination]
+cp source destination
 
 # Mount filesytem:
-mount /dev/[device name] /media/[device name]
+mount /dev/device_name /media/device_name
 
 # Unmount:
-umount /media/[device name]
+umount /media/device name
 
-# Forensically clone filesystems and do other low-level operations on files. Very dangerous:
+# Forensically clone filesystems and do other low-level operations on files. Be careful with this one. Can be destructive:
 dd
 
 # Work with filesystems and partitions. (Easier, still quite dangerous):
@@ -57,14 +57,37 @@ fdisk
 
 **** System Administration:
 
-# Execute command as an administrator (dangerous, but necessary for system administration tasks):
-sudo [command]
+# Execute command as an administrator (can be destructive/insecure. Use only for system administration tasks):
+sudo command
 
 # Become system administrator:
 sudo -s
 
 # Quit system administration:
 exit
+
+***** Installing software from a .tgz (also known as a tarball):
+
+# First, unzip the tarball (see section on tar, below)
+# Next, move into unzipped directory:
+cd software_directory
+
+# Always read README first if it is provided, in case there are any modifications to the procedure outlined below:
+cat README
+
+# Automatically check for appropriate configurations and generate a MAKE file in the directory:
+./configure
+
+# Compile software. May require sudo:
+make
+
+# Move files into their appropriate locations. May also require sudo:
+make install
+
+# Clean up files in directory, in case make command fails, or just to remove unnecessary cruft:
+make clean
+
+***** Ubuntu/Debian Software repositories:
 
 # Check distro repositories for software updates:
 sudo apt-get update
@@ -73,30 +96,30 @@ sudo apt-get update
 sudo apt-get upgrade
 
 # Search for package in the repositories:
-apt-cache search [keyword]
+apt-cache search keyword
 
 # Get more detail on one specific package:
-apt-cache show [package name]
+apt-cache show package_name
 
 # Download and install a package:
-sudo apt-get install [package name]
+sudo apt-get install package_name
 
 # View the output of a command in a more convenient format:
-[command] | less
+command | less
 
 **** Working With Files:
 
 # Print a file in terminal:
-cat [file]
+cat file
 
-# Find files matching [filename]:
-locate [filename]
+# Find files matching filename:
+locate filename
 
-# Search through [filename] for matches to [phrase]:
-grep [phrase] [filename]
+# Search through filename for matches to phrase:
+grep phrase filename
 
-# Search through output of a command for [phrase]:
-[command] | grep [phrase]
+# Search through output of a command for phrase:
+command | grep phrase
 
 **** Working With Processes:
 
@@ -110,33 +133,33 @@ top
 htop
 
 # Stop a process from using all system resources and lagging computer:
-nice [process name]
+nice process_name
 
 # Kill misbehaving process (use sparingly, last resort, try 'nice' command first):
-pkill [process name]
+pkill process name
 
 # Start a process in the background
-[command] &
+command &
 
 # Start a process in the background and have it keep running after you log off
-nohup [command] &
+nohup command &
 
 **** Compression and Encryption:
 
 # Make a simple compressed backup of a file or directory:
-tar -cvzf [backup output.tgz] [target file or directory]
+tar -cvzf backup_output.tgz target_file_or_directory
 
 # Open a compressed .tgz or .tar.gz file:
-tar -xvf [target.tgz]
+tar -xvf target.tgz
 
 # Encrypt a file:
-gpg -o [outputfilename.gpg] -c [target file]
+gpg -o outputfilename.gpg -c target_file
 
 # Decrypt a file:
-gpg -o [outputfilename] -d [target.gpg]
+gpg -o outputfilename -d target.gpg
 
 # Zip and encrypt a directory simultaneously:
-gpg-zip -o encrypted-filename.tgz.gpg -c -s file-to-be-encrypted
+gpg-zip -o encrypted_filename.tgz.gpg -c -s file_to_be_encrypted
 
 *** The Bash shell:
 **** File Name expansions:
@@ -158,40 +181,46 @@ gpg-zip -o encrypted-filename.tgz.gpg -c -s file-to-be-encrypted
 **** Output Redirects:
 
 # Redirect output of one command into the input of another with a pipe:
-[command 1] | [command 2]
+command_1 | command_2
 
 # Or even:
 
-[command 1] | [command 2] | [command 3]
+command_1 | command_2 | command_3
 
 # Redirect output to a file:
-[command] > file
+command > file
 
 # Or:
 
-[file] > [file]
+file > file
 
 # Or even, to redirect in a different direction:
-[file] < [file]
+file < file
 
 # Append output rather than writing over the target file:
 
-[file/command] >> [file]
+file_or_command >> file
 
 # Works like |, but it writes output to both target and terminal:
-tee [target]
+tee target
 
-# Redirect standard output and error into a black hole
-[command] > /dev/null 2>&1
+# Redirect standard output and error to /dev/null, where it is deleted.
+command > /dev/null 2>&1
 
 **** Controlling Execution:
-# Wait until [command 1] is finished to execute [command 2]
-[command 1] ; [command 2]
+# Wait until command 1 is finished to execute command 2
+command_1 ; command_2
 
 # Or even:
-[command 1] ; [command 2] ; [command 3]
+command_1 ; command_2 ; command_3
 
-**** Wildcards:
+# && acts like ; but only executes command_2 if command_1 indicates that it succeeded without error by returning 0.
+command_1 && command_2
+
+# || acts like && but only executes command_2 if command_1 indicates an error by returning 1.
+command_1 || command_2
+
+**** Bash Wildcards:
 # Zero or more characters:
 *
 
@@ -221,22 +250,22 @@ ifconfig
 iwconfig
 
 # Connect to a remote server.
-ssh [username]@[ipaddress]
+ssh username@ip_address
 
-# Forward x from target to current machine (Get a remote desktop. Very obscure and very useful):
-ssh -x [username]@[ipaddress]
+# Forward X from target to current machine (Get a remote desktop. Somewhat obscure, but very useful):
+ssh -X username@ip_address
 
 # Copy files over the network from one machine to another:
-scp [source filename]:[username]@[ipaddress] [target filename]:[target username]@[target ipaddress]
+scp source_filename:username@ip_address target_filename:target_username@target_ip_address
 
-# Copy only changes between files or directories (super efficient way to sync directories, works either locally or with remote servers using username@ipaddress:optionalport, just like ssh):
-rsync [source] [target]
+# Copy only changes between files or directories (super efficient way to sync directories, works either locally or with remote servers using username@ip_address:optionalport, just like ssh):
+rsync source target
 
 # Check to see if target is online and responding
-ping [ip address]
+ping ip_address
 
 # View network route to target:
-traceroute6 [ip address]
+traceroute6 ip_address
 
 # Network Monitor
 netstat
@@ -249,20 +278,20 @@ nmap 127.0.0.1
 
 ***** netcat:
 
-# Listen for input from network on [recieving port], dump it to a file (possibly insecure):
-netcat -l [recieving port] > file_copied
+# Listen for input from network on recieving_port, dump it to a file (insecure, but handy):
+netcat -l recieving_port > file_copied
 
 # Pipe the output of a command to a target ip and port over the network:
-[command] | netcat -w [number of seconds before timeout] [target ip] [target port]
+command | netcat -w number_of_seconds_before_timeout target_ip target_port
 
 # Use tar to compress and output a file as a stream, pipe it to a target ip and port over the network:
-sudo tar -czf - [filename] | netcat -w [number of seconds before timeout] [target ip] [target port]
+sudo tar -czf - filename | netcat -w number_of_seconds_before_timeout target_ip target_port
 
 **** Users and Groups:
 # Change owner of a file or directory:
-chown
+chown user_name:group_name directory_name
 
-# Change privileges over file or directory:
+# Change privileges over file or directory (see man page for details.)
 chmod
 
 # Create a new user:
@@ -271,7 +300,7 @@ adduser
 # Change user privileges (be very careful with this one):
 usermod
 
-# Delete user"
+# Delete user
 deluser
 
 # Print groups:
@@ -287,8 +316,7 @@ groupmod
 delgroup
 
 # Temporarily become a different user:
-su [username]
-
+su username
 
 # Print usernames of logged in users:
 users
@@ -296,7 +324,7 @@ users
 # Write one line to another user from your terminal:
 talk
 
-# Interactive talk program to talk to other users from terminal:
+# Interactive talk program to talk to other users from terminal (must be installed from repositories.):
 ytalk
 
 **** Working With Files, Continued:
@@ -304,39 +332,39 @@ ytalk
 lsof
 
 # View the differences between two files:
-diff [file 1] [file 2]
+diff file_1 file_2
 
-# Output the top -n lines of [file]:
-head -n [number of lines] [file]
+# Output the top number_of_lines of file:
+head -n number_of_lines file
 
 # Like head, but it outputs the last -n lines:
-tail
+tail -n number_of_lines file
 
 # Checksum a file:
-md5sum [file]
+md5sum file
 
-# Checksum every file in a directory:
-md5deep [directory]
+# Checksum every file in a directory (install this one from repositories.):
+md5deep directory
 
-# Checksum a file (safer algorithm with no hash collisions):
+# Checksum a file (better algorithm with no hash collisions):
 sha1sum
 
 # Same operation as md5deep, but using sha1:
 sha1deep
 
-# Call [command] every -n seconds, and display output:
-watch -n [number of seconds] [command]
+# Call command every few number_of_seconds, and display output:
+watch -n number_of_seconds command
 
-# Execute [command], print how long it took:
-time [command]
+# Execute command, print how long it took:
+time command
 
-# View files in home from largest to smallest:
-du -a ~/ | sort -n -r | less
+# View files in directory from largest to smallest:
+du -a directory | sort -n -r | less
 
-# remove spaces from filenames in current directory
+# remove spaces from filenames in current directory:
 rename -n 's/[\s]/''/g' *
 
-# change capitals to lowercase in filenames in current directory
+# change capitals to lowercase in filenames in current directory:
 rename 'y/A-Z/a-z/' *
 
 ***** Environment and Hardware:
@@ -355,7 +383,7 @@ uname -a
 # Print information about kernel modules:
 lsmod
 
-# Configure kernel modules (never do this):
+# Configure kernel modules (never do this ;p ):
 modprobe
 
 # View Installed packages:
@@ -379,50 +407,54 @@ dumpcap
 # Dump info about keyboard drivers:
 dumpkeys
 
-***** System Administration (Continued):
+***** Ubuntu System Administration, Advanced (Continued):
 
 # Add a Personal Package Archive from Ubuntu Launchpad:
-
 add-apt-repository
 
 # Install a .deb file from command line:
 sudo dpkg -i package.deb
+
 **** Python:
 
-# update pip (Python package manager):
+# Update pip (Python package manager):
 pip install -U pip
 
-# search pip repos
-pip
+# search pip repos for a library:
+pip search library_name
 
-# create a virtual python environment
-virtualenv [dirname] --no-site-packages
+# create a virtual ython environment to allow install of many different versions of the same Python modules:
+virtualenv dirname --no-site-packages
 
 # connect to a virtual python environment
-source [dirname]/bin/activate
+source dirname/bin/activate
 
-# disconnect from a python environment:
+# disconnect from a virtual python environment:
 deactivate
 
-# install package into virtual python environment from outsie:
-pip install [packagename]==[version_number] -E [dirname]
+# install package into virtual python environment from outside:
+pip install packagename==version_number -E dirname
 
 # export python virtual environment into a shareable format:
-pip freeze -E [dirname] > requirements.txt
+pip freeze -E dirname > requirements.txt
 
 # import python virtual environment from a requirements.txt file:
-pip install -E [dirname] -r requirements.txt
+pip install -E dirname -r requirements.txt
 
 **** git (all commands must be performed in the same directory as .git folder):
 
 # Start a new git project:
 git init
 
-# Clone a git (target can be specified either locally or remotely, via any number of protocols):
-git clone [target]
+git config user.name "user_name"
+
+git config user.email "email"
+
+# Make a copy of a git (target can be specified either locally or remotely, via any number of protocols):
+git clone target
 
 # Commit changes to a git:
-git commit -m "[message]"
+git commit -m "message"
 
 # Get info on current repository:
 git status
@@ -448,17 +480,20 @@ git branch -d [branchname]
 # Merge two branches:
 git merge [branchname] [branchname]
 
+# Show all branches of a project:
+git show-branch
+
 *** Virtualization:
 
 #clone a virtual machine (this works, it's been tested):
-vboxmanage clonehd [virtual machine name].vdi --format VDI ~/[target virtual machine name].vdi
+vboxmanage clonehd virtual_machine_name.vdi --format VDI ~/target_virtual_machine_name.vdi
 
 #mount a shared virtual folder:
 #you need to make sure you have the right kernel modules. You can do this with modprobe, but this package works instead in a ubuntu-specific way.
 
 sudo apt-get install virtualbox-ose-guest-utils
 
-sudo mount -t vboxsf [name of Shared folder specified in Virtualbox] [path of mountpoint]
+sudo mount -t vboxsf name_of_shared_folder_specified_in_Virtualbox path_of_mountpoint
 
 *** mysql:
 
@@ -469,31 +504,31 @@ help
 show databases;
 
 # Choose a database to use:
-use [database name here];
+use database_name_here;
 
 # Show database schema:
 show tables;
 
 # Delete database:
-DROP DATABASE [databasename];
+DROP DATABASE databasename;
 
 # New database:
-CREATE DATABASE [databasename];
+CREATE DATABASE databasename;
 
 # Create a new user:
-CREATE USER [username@localhost] IDENTIFIED BY '[password]' ;
+CREATE USER username@localhost IDENTIFIED BY 'password';
 
 # Show users:
 select * from mysql.user;
 
 # Delete a user:
-delete from mysql.user WHERE User='[user_name]';
+delete from mysql.user WHERE User='user_name';
 
 # Give user access to all tables (make them root). the "%" means that they can sign in remotely, from any machine, not just localhost.:
-grant all privileges on *.* to someusr@"%" identified by '[password]';
+grant all privileges on *.* to someusr@"%" identified by 'password';
 
 # give certain privileges to a user on a certain database:
-grant select,insert,update,delete,create,drop on [somedb].* to [someusr]@["%"] identified by '[password]';
+grant select,insert,update,delete,create,drop on somedb.* to someusr@"%" identified by 'password';
 
 # Tell mysql to use new user priv policies:
 flush privileges;
@@ -501,22 +536,17 @@ flush privileges;
 # change user password:
 use mysql;
 
-update user set password='[password]'('[newpassword]') where User='[user_name]' ;
+update user set password='password'('newpassword') where User='user_name';
 
 # mysql command line args:
-
 # export text file with commands to rebuild all mysql tables:
-
-mysqldump [databasename] > [dumpfilename.txt]
+mysqldump databasename > dumpfilename.txt
 
 # restore from a dump:
-
-mysql -u [username] -p < [dumpfilename.txt]
+mysql -u username -p < dumpfilename.txt
 
 # dump entire database:
-
-mysqldump -u [username] -p --opt [databasename] > [dumpfile.sql]
+mysqldump -u username -p --opt databasename > dumpfile.sql
 
 # restore from entire database dump:
-
-mysql -u [username] -p --database=[databasename] < [dumpfile.sql]
+mysql -u username -p --database=databasename < dumpfile.sql
