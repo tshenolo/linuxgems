@@ -1,7 +1,6 @@
 # cheat_sheet.org.sh
 # (C) William Hackmore, 2010
 # The contents of this file are released under the GNU General Public License. Feel free to reuse the contents of this work, as long as the resultant works give proper attribution and are made publicly available under the GNU General Public License.
-# Last updated 8/14/2012
 # Best viewed in emacs org-mode.
 
 * Reference:
