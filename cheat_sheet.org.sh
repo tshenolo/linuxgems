@@ -376,6 +376,10 @@ echo $HOSTNAME
 # Print information about current linux distro:
 lsb_release -a
 
+# Or even:
+
+more /etc/issue
+
 # Print linux kernel version:
 uname -a
 
