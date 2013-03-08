@@ -115,6 +115,12 @@ nice [process name]
 # Kill misbehaving process (use sparingly, last resort, try 'nice' command first):
 pkill [process name]
 
+# Start a process in the background
+[command] &
+
+# Start a process in the background and have it keep running after you log off
+nohup [command] &
+
 **** Compression and Encryption:
 
 # Make a simple compressed backup of a file or directory:
@@ -174,6 +180,9 @@ gpg-zip -o encrypted-filename.tgz.gpg -c -s file-to-be-encrypted
 
 # Works like |, but it writes output to both target and terminal:
 tee [target]
+
+# Redirect standard output and error into a black hole
+[command] > /dev/null 2>&1
 
 **** Controlling Execution:
 # Wait until [command 1] is finished to execute [command 2]
