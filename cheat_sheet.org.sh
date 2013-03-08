@@ -32,7 +32,7 @@ ls
 ls -a
 
 # Recurse into subdirectories and list those as well:
-ls -r
+ls -R
 
 # Move/rename a file or directory (be careful that you don't move the source over a destination with the same name):
 mv [source] [destination]
