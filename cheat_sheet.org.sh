@@ -549,3 +549,6 @@ mysqldump -u username -p --opt databasename > dumpfile.sql
 
 # restore from entire database dump:
 mysql -u username -p --database=databasename < dumpfile.sql
+
+# See the version of a program or the location of the program
+which appname
