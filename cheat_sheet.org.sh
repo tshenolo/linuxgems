@@ -422,7 +422,7 @@ pip install -U pip
 # search pip repos for a library:
 pip search library_name
 
-# create a virtual ython environment to allow install of many different versions of the same Python modules:
+# create a virtual python environment to allow install of many different versions of the same Python modules:
 virtualenv dirname --no-site-packages
 
 # connect to a virtual python environment
