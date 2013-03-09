@@ -65,6 +65,9 @@ sudo -s
 # Quit system administration:
 exit
 
+# Forgot to type sudo in front of a command and already hit enter? Repeat the last command using sudo:
+sudo !!
+
 ***** Installing software from a .tgz (also known as a tarball):
 
 # First, unzip the tarball (see section on tar, below)
