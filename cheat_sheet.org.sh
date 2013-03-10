@@ -51,8 +51,11 @@ umount /media/device name
 # Forensically clone filesystems and do other low-level operations on files. Be careful with this one. Can be destructive:
 dd
 
-# Work with filesystems and partitions. (Easier, still quite dangerous):
-fdisk
+# Work with disk partitions:
+parted
+
+# Filesystem creation tool:
+mkfs
 
 **** System Administration:
 
