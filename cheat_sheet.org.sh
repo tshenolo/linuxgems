@@ -269,11 +269,11 @@ traceroute6 ip_address
 # Network Monitor
 netstat
 
-# Manage standard linux firewall (advanced users only)
-iptables
+# View firewall rules
+iptables -L
 
-# Scan this machine to check for open ports:
-nmap 127.0.0.1
+# Scan this machine(localhost) to check for open ports:
+nmap localhost
 
 ***** netcat:
 
@@ -351,8 +351,8 @@ sha1sum
 # Same operation as md5deep, but using sha1:
 sha1deep
 
-# Call command every few number_of_seconds, and display output:
-watch -n number_of_seconds command
+# Call command every few number_of_seconds, and highlight difference in output:
+watch -d -n number_of_seconds command
 
 # Execute command, print how long it took:
 time command
@@ -367,6 +367,9 @@ rename -n 's/[\s]/''/g' *
 rename 'y/A-Z/a-z/' *
 
 ***** Environment and Hardware:
+# print motherboard information
+dmidecode
+
 # Print full date and time:
 date
 
@@ -480,7 +483,7 @@ git branch -d [branchname]
 git merge [branchname] [branchname]
 
 # Show all branches of a project:
-git show-branch
+git branch
 
 *** Virtualization:
 
