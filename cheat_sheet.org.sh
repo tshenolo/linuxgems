@@ -558,11 +558,14 @@ mysql -u username -p --database=databasename < dumpfile.sql
 
 *** wget:
 
-# download this file:
-wget https://raw.github.com/WilliamHackmore/linuxgems/master/cheat_sheet.org.sh
+# download a file over http:
+wget http://example.com/folder/file 
+
+# complete a downloaded file:
+wget -c http://example.com/folder/file
 
 # start download in background:
-wget -b https://raw.github.com/WilliamHackmore/linuxgems/master/cheat_sheet.org.sh
+wget -b wget -c http://example.com/folder/file
 
 # download a file from ftp server:
-wget --ftp-user=USER --ftp-password=PASS ftp://ftp-server/file.zip
+wget --ftp-user=USER --ftp-password=PASS ftp://example.com/folder/file
