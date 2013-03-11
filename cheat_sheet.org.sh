@@ -567,5 +567,21 @@ mysqldump -u username -p --opt databasename > dumpfile.sql
 # restore from entire database dump:
 mysql -u username -p --database=databasename < dumpfile.sql
 
+<<<<<<< HEAD
 # See the version of a program or the location of the program
 which appname
+=======
+*** wget:
+
+# download a file over http:
+wget http://example.com/folder/file 
+
+# complete a downloaded file:
+wget -c http://example.com/folder/file
+
+# start download in background:
+wget -b wget -c http://example.com/folder/file
+
+# download a file from ftp server:
+wget --ftp-user=USER --ftp-password=PASS ftp://example.com/folder/file
+>>>>>>> fc96b7928ac0eb54c6bc320265e393b347ce5b05
