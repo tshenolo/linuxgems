@@ -1,5 +1,4 @@
 # cheat_sheet.org.sh
-# (C) William Hackmore, 2010
 # The contents of this file are released under the GNU General Public License. Feel free to reuse the contents of this work, as long as the resultant works give proper attribution and are made publicly available under the GNU General Public License.
 # Best viewed in emacs org-mode.
 
@@ -13,8 +12,8 @@ man command
 # Get help with a target command (probably the same as above, but not always):
 command -h
 
-# In case you forget the name of a command, print possible commands relating to guess:
-apropos guess
+# In case you forget the name of a command, print possible commands relating to any given word:
+apropos word
 
 # View index of help pages:
 info
@@ -32,6 +31,9 @@ ls -a
 
 # Recurse into subdirectories and list those as well:
 ls -R
+
+# List files by modification time, most recent first.
+ls -lt
 
 # Move/rename a file or directory (be careful that you don't move the source over a destination with the same name):
 mv source destination
