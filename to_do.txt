@@ -9,5 +9,4 @@ anacron
 more detail about filesystems
 /etc
 daemons
-wget
 curl

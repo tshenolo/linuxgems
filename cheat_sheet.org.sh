@@ -555,3 +555,14 @@ mysqldump -u username -p --opt databasename > dumpfile.sql
 
 # restore from entire database dump:
 mysql -u username -p --database=databasename < dumpfile.sql
+
+*** wget:
+
+# download this file:
+wget https://raw.github.com/WilliamHackmore/linuxgems/master/cheat_sheet.org.sh
+
+# start download in background:
+wget -b https://raw.github.com/WilliamHackmore/linuxgems/master/cheat_sheet.org.sh
+
+# download a file from ftp server:
+wget --ftp-user=USER --ftp-password=PASS ftp://ftp-server/file.zip
