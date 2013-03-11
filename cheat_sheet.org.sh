@@ -1,6 +1,10 @@
 # cheat_sheet.org.sh
 # The contents of this file are released under the GNU General Public License. Feel free to reuse the contents of this work, as long as the resultant works give proper attribution and are made publicly available under the GNU General Public License.
 # Best viewed in emacs org-mode.
+# Alternately, one can keep this cheat sheet handy by adding the following line to ~/.bashrc:
+#
+# alias cheatsheet="less ~/path_to_cheat_sheet.org.sh" 
+
 
 * Reference:
 ** Basics:
@@ -143,9 +147,9 @@ top
 htop
 
 # Stop a process from using all system resources and lagging computer:
-nice process_name
+renice process_name
 
-# Kill misbehaving process (use sparingly, last resort, try 'nice' command first):
+# Kill misbehaving process (use sparingly, last resort, try 'renice' command first):
 pkill process name
 
 # Start a process in the background
@@ -156,8 +160,8 @@ nohup command &
 
 **** Compression and Encryption:
 
-# Make a simple compressed backup of a file or directory:
-tar -cvzf backup_output.tgz target_file_or_directory
+# Make a simple compressed backup of files or directories:
+tar -cvzf backup_output.tgz target_files_or_directories
 
 # Open a compressed .tgz or .tar.gz file:
 tar -xvf target.tgz
