@@ -260,8 +260,8 @@ ssh username@ip_address
 # Forward X from target to current machine (Get a remote desktop. Somewhat obscure, but very useful):
 ssh -X username@ip_address
 
-# Copy files over the network from one machine to another:
-scp source_filename:username@ip_address target_filename:target_username@target_ip_address
+# Copy files/directory over the network from one machine to another recursively:
+scp -r source_filename:username@ip_address target_filename:target_username@target_ip_address
 
 # Copy only changes between files or directories (super efficient way to sync directories, works either locally or with remote servers using username@ip_address:optionalport, just like ssh):
 rsync source target
@@ -280,6 +280,10 @@ iptables -L
 
 # Scan this machine(localhost) to check for open ports:
 nmap localhost
+
+# Download file using 'wget' with `debug` option ON. '-c' will
+# continue downloading the partially downloaded file
+wget -dc http://www.tldp.org/LDP/abs/abs-guide.pdf
 
 ***** netcat:
 
