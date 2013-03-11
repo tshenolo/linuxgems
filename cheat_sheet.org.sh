@@ -46,7 +46,7 @@ cp source destination
 mount /dev/device_name /media/device_name
 
 # Unmount:
-umount /media/device name
+umount /media/device_name
 
 # Forensically clone filesystems and do other low-level operations on files. Be careful with this one. Can be destructive:
 dd
